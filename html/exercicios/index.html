@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicios Html</title>
+   <style>
+       h1 {
+               background-color:rosybrown;
+               color:black;
+               font-weight: bold;
+   }
+   
+</style>
+</head>
+<body>
+    <header>
+        <h1> ATIVIDADE DO DIA </h1>
+    </header>
+    <nav>
+        <!-- <a href wm-nav="/exercicios/teste.html"> 00 - Teste</a>|     -->
+        <a href="/html/exercicios/teste.html">00 - Teste</a><br><br>
+        <a href="/html/texto1.html">01 - texto 1</a><br><br>
+        <a href="/html/texto2.html">02 - texto 2</a><br><br>
+        <a href="/html/exercicios/listas.html">03 - Listas 3</a><br><br>
+        <a href="/html/exercicios/listaAninhada.html">04 - lista Aninhada 4</a><br><br>
+        <a href="/html/exercicios/links.html">05 - links 5</a><br><br>
+        <a href="/html/exercicios/tabela.html">06 - Tabela 6</a><br><br>
+        <a href="/html/exercicios/form/form.html">07 - Formulário 7</a><br><br>
+        <a href="/html/exercicios/imagens.html">08 - Imagens 8</a><br><br>
+    </nav>
+    <section id= "conteudo"></section>
+        
+    <script>
+        document.querySelectorAll('a').forEach(link => {    
+        link.onclick = function(e) {
+            e.proventDefault()
+           /* console.log('ação!!')*/
+
+           const conteudo = document.getElementById('conteudo')
+           fetch(link.href)
+              .then(resp => resp.text())
+              .then(html => conteudo.innerHTML = html())
+            
+            }
+        
+        })
+
+    </script>
+</body>
+</html>
+<style>
+    nav {  
+        font-weight: bold;
+        padding: 30px;
+        background-color:lightgrey;
+       
+    }
+    nav :hover{  
+        font-weight: bold;
+        padding: 5px;
+        background-color:cadetblue;
+       
+    }
+    </style>

@@ -1,0 +1,115 @@
+
+
+<div wm-slider>
+
+  <p>
+    <img src="../exercicios/imagens17/fotos01.webp"
+    alt="Corações"
+    width="300"  height="250"
+    title="Corações">
+</p>
+
+<p class="circular">
+    <img src="../exercicios/imagens17/imagens03.jpg"
+    alt="Aracaju" width="300" height="250">
+</p>
+
+<p>
+    <img src="../exercicios/imagens17/foto02.jpg"
+    alt="love"  width="300" height="250">
+</p>
+
+<p class="texto">
+    <img src="../exercicios/imagens17/imagens04.jpg"
+    alt="Sentimento"  height="80" >
+    Bom dia, essa imagens trasmite emoções e sentimento,
+    atualmente o mundo precisa de mais bondade e amor com todos 
+</p>
+
+<p class="paisagem"></p>
+
+<p>
+  <picture>
+    <source srcset="https://proex.ufpa.br/images/galeria_em_artigos/image04_grd.png"
+        media="(min-width:600px)" width="300" height="290">
+   <img src="" >
+   </picture>  
+  </p>
+</div>
+
+
+<style>
+  p{
+    position:absolute;
+    display: none;
+    
+  }
+
+    .circular {
+        width: 250px;
+        background-color: #444
+    }
+
+    .texto {
+        width: 400px;
+    }
+
+    .texto img{
+     margin-right: 10px;
+
+    }
+
+    .paisagem {
+        width: 300px;
+        height: 250px;
+        background-image: url('../exercicios/imagens17/imagens05.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 300px;
+    
+
+    }
+</style>
+
+<script>
+    function mover(elem, inicio, fim, passo, callback) {
+        const novoInicio = inicio - passo
+        if(novoInicio >= fim) {
+         elem.style.left= novoInicio + 'px'
+          setTimeout(() => mover(elem, novoInicio, fim, passo, callback), 6)
+          } else {
+            callback()
+          }
+        }
+        //const p = document.querySelector('[wm-slider] > p')
+        //p.style.display = 'block'
+        //mover(p, 1500, -400, 5, () => {
+            //console.log('Terminou!!!')
+        //})
+       
+        function slider(){
+        const elementos = document.querySelectorAll('[wm-slider] > p')
+        const slides = Array.from(elementos)
+        exibirSlide(slides, slides[0])
+      }
+
+      function exibirSlide(slides, slide) {
+        slide.style.display = 'block'
+
+        const inicio = innerHeight
+        const fim = -slide.clientWidth
+
+        slide.style.left = `${inicio}px`
+
+        mover(slide, inicio, fim, 5, () => {
+            slide.style.display = 'none'
+            exibirSlide(slides, getProximo(slides, slide))
+        })
+      }
+
+      function getProximo(lista, atual) {
+        const i = lista.indexOf(atual) + 1
+        return i< lista.length ? lista[i] : lista[0]
+      }
+      slider()
+</script>
